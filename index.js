@@ -14,30 +14,16 @@ const bands = [
   "An Old Dog",
 ];
 
-function customCompare(a, b) {
-  const articles = ["The", "A", "An"];
+const sortedBands = bands.sort((a, b) =>
+  sortedFunction(a) > sortedFunction(b) ? 1 : -1
+);
 
-  function removeArticles(bandName) {
-    for (const article of articles) {
-      if (bandName.startsWith(article + " ")) {
-        return bandName.slice(article.length + 1);
-      }
-    }
-    return bandName;
-  }
-
-  const bandA = removeArticles(a);
-  const bandB = removeArticles(b);
-
-  return bandA.localeCompare(bandB);
+function sortedFunction(bandName) {
+  return bandName.replace(/^(a |the |an )/i, "").trim();
 }
 
 const lista = document.querySelector("#bands");
 
-const bandSorted = bands.sort(customCompare);
-
-bandSorted.forEach((band) => {
-  lista.innerHTML += `
-        <li>${band}</li>
-    `;
+sortedBands.map((band) => {
+  lista.innerHTML += `<li>${band}</li>`;
 });
