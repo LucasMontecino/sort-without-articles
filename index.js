@@ -14,16 +14,18 @@ const bands = [
   "An Old Dog",
 ];
 
-const sortedBands = bands.sort((a, b) =>
-  sortedFunction(a) > sortedFunction(b) ? 1 : -1
-);
+const sortedBands = bands.sort((a, b) => {
+  return sortedFunction(a) > sortedFunction(b) ? 1 : -1;
+});
 
 function sortedFunction(bandName) {
   return bandName.replace(/^(a |the |an )/i, "").trim();
 }
 
-const lista = document.querySelector("#bands");
+console.log(sortedBands);
 
-sortedBands.map((band) => {
-  lista.innerHTML += `<li>${band}</li>`;
+const bandsList = document.querySelector("#bands");
+
+sortedBands.forEach((band) => {
+  bandsList.innerHTML += `<li>${band}</li>`;
 });
